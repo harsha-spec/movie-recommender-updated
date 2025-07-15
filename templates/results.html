@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Results</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recommended Movies</h1>
+        <div class="movie-grid">
+            {% for movie in movies %}
+                <div class="movie-card">
+                    {% if movie.poster_path %}
+                        <img src="https://image.tmdb.org/t/p/w342{{ movie.poster_path }}" alt="{{ movie.title }}">
+                    {% else %}
+                        <div class="no-poster">No Poster</div>
+                    {% endif %}
+                    <h2>{{ movie.title }}</h2>
+                    <p><strong>Rating:</strong> {{ movie.vote_average }}</p>
+                    <p><strong>Release:</strong> {{ movie.release_date }}</p>
+                    <p>{{ movie.overview[:150] }}...</p>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="/">← Try Again</a>
+    </div>
+</body>
+</html>
